@@ -311,7 +311,6 @@ void NutritionSystem::showDishesMenu() {
                 break;
             case 3:
                 ConsoleIO::printInfo("Редактирование блюда...");
-                // Реализация редактирования
                 ConsoleIO::waitForEnter();
                 break;
             case 4:
@@ -435,8 +434,14 @@ void NutritionSystem::showProfileMenu(User* user) {
                     ConsoleIO::printMenuOption(3, "📈 Набор массы");
                     int goalChoice = ConsoleIO::getInt("Ваш выбор: ");
                     
-                    // Здесь должна быть логика изменения цели
-                    ConsoleIO::printInfo("Функция изменения цели в разработке...");
+                    Goal newGoal = Goal::MAINTENANCE;
+                    switch (goalChoice) {
+                        case 1: newGoal = Goal::WEIGHT_LOSS; break;
+                        case 2: newGoal = Goal::MAINTENANCE; break;
+                        case 3: newGoal = Goal::WEIGHT_GAIN; break;
+                    }
+                    user->setGoal(newGoal);
+                    ConsoleIO::printSuccess("Цель изменена!");
                     ConsoleIO::waitForEnter();
                 }
                 break;

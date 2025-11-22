@@ -11,9 +11,6 @@ void AddProductCommand::execute() {
     products.addProduct(name, calories, proteins, fats, carbs);
 }
 
-void AddProductCommand::undo() {
-    // В реальном приложении здесь должна быть логика отмены добавления
-}
 
 RemoveProductCommand::RemoveProductCommand(ProductContainer& products, int productId)
     : products(products), productId(productId) {}
@@ -22,8 +19,4 @@ RemoveProductCommand::~RemoveProductCommand() {}
 
 void RemoveProductCommand::execute() {
     products.removeItem(productId);
-}
-
-void RemoveProductCommand::undo() {
-    // В реальном приложении здесь должна быть логика восстановления удаленного продукта
 }

@@ -10,8 +10,7 @@ public:
     virtual ~Command();
     
     virtual void execute() = 0;
-    virtual void undo() = 0;
-    virtual bool canUndo() const { return false; }
+    virtual void undo() {}  // Пустая реализация по умолчанию
     
     virtual std::string getName() const = 0;
     virtual std::string getDescription() const = 0;

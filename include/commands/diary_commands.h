@@ -18,8 +18,6 @@ public:
     ~AddMealCommand();
     
     void execute() override;
-    void undo() override;
-    bool canUndo() const override { return true; }
     
     std::string getName() const override { return "AddMeal"; }
     std::string getDescription() const override { 
@@ -38,8 +36,6 @@ public:
     ~RemoveMealCommand();
     
     void execute() override;
-    void undo() override;
-    bool canUndo() const override { return true; }
     
     std::string getName() const override { return "RemoveMeal"; }
     std::string getDescription() const override { 
@@ -60,8 +56,6 @@ public:
     ~EditMealCommand();
     
     void execute() override;
-    void undo() override;
-    bool canUndo() const override { return true; }
     
     std::string getName() const override { return "EditMeal"; }
     std::string getDescription() const override { 

@@ -10,9 +10,6 @@ void AddMealCommand::execute() {
     nutrition.addMeal(date, item, quantity);
 }
 
-void AddMealCommand::undo() {
-    // В реальном приложении здесь должна быть логика отмены добавления приема пищи
-}
 
 RemoveMealCommand::RemoveMealCommand(NutritionContainer& nutrition, std::time_t date, 
                                    int mealIndex)
@@ -24,9 +21,6 @@ void RemoveMealCommand::execute() {
     nutrition.removeMeal(date, mealIndex);
 }
 
-void RemoveMealCommand::undo() {
-    // В реальном приложении здесь должна быть логика восстановления удаленного приема пищи
-}
 
 EditMealCommand::EditMealCommand(NutritionContainer& nutrition, std::time_t date,
                                int mealIndex, double newQuantity)

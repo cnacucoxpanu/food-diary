@@ -20,8 +20,6 @@ public:
     ~AddProductCommand();
     
     void execute() override;
-    void undo() override;
-    bool canUndo() const override { return true; }
     
     std::string getName() const override { return "AddProduct"; }
     std::string getDescription() const override { 
@@ -39,8 +37,6 @@ public:
     ~RemoveProductCommand();
     
     void execute() override;
-    void undo() override;
-    bool canUndo() const override { return true; }
     
     std::string getName() const override { return "RemoveProduct"; }
     std::string getDescription() const override { 

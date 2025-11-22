@@ -32,12 +32,6 @@ void RegisterCommand::execute() {
     users.setCurrentUser(users.findUser(username));
 }
 
-void RegisterCommand::undo() {
-    User* user = users.findUser(username);
-    if (user) {
-        users.logout();
-    }
-}
 
 LoginCommand::LoginCommand(UserContainer& users, const std::string& username, 
                          const std::string& password)
@@ -67,9 +61,6 @@ void LoginCommand::execute() {
     users.setCurrentUser(user);
 }
 
-void LoginCommand::undo() {
-    users.logout();
-}
 
 LogoutCommand::LogoutCommand(UserContainer& users) : users(users) {}
 
@@ -77,8 +68,4 @@ LogoutCommand::~LogoutCommand() {}
 
 void LogoutCommand::execute() {
     users.logout();
-}
-
-void LogoutCommand::undo() {
-    // В реальном приложении здесь должна быть логика восстановления сессии
 }

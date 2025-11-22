@@ -22,8 +22,6 @@ public:
     ~RegisterCommand();
     
     void execute() override;
-    void undo() override;
-    bool canUndo() const override { return true; }
     
     std::string getName() const override { return "Register"; }
     std::string getDescription() const override { 
@@ -42,8 +40,6 @@ public:
     ~LoginCommand();
     
     void execute() override;
-    void undo() override;
-    bool canUndo() const override { return true; }
     
     std::string getName() const override { return "Login"; }
     std::string getDescription() const override { 
@@ -60,8 +56,6 @@ public:
     ~LogoutCommand();
     
     void execute() override;
-    void undo() override;
-    bool canUndo() const override { return true; }
     
     std::string getName() const override { return "Logout"; }
     std::string getDescription() const override { return "Logout current user"; }

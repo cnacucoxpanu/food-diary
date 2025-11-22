@@ -172,25 +172,17 @@ bool NutritionContainer::loadFromFile(const std::string& filename) {
         if (line.empty()) continue;
         
         if (line[0] == '#') {
-            // Парсим дату из комментария
             if (line.find("Дата:") != std::string::npos) {
-                // Парсим дату из строки
-                // Упрощенная реализация - используем текущую дату
                 currentDate = std::time(0);
             }
             continue;
         }
         
-        // Парсим строку формата: product_id|quantity|timestamp
         std::vector<std::string> parts = StringUtils::split(line, '|');
         if (parts.size() == 3) {
             int productId = std::stoi(parts[0]);
             double quantity = std::stod(parts[1]);
             std::time_t timestamp = std::stol(parts[2]);
-            
-            // Здесь должна быть логика загрузки продукта по ID
-            // и создания Meal объекта
-            // Упрощенная реализация
         }
     }
     
