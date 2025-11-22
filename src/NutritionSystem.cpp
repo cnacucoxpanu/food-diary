@@ -38,10 +38,27 @@ User* NutritionSystem::login() {
             std::string password = ConsoleIO::getString("Пароль: ");
             
             try {
-                LoginCommand cmd(diary.getUserManager(), username, password);
-                cmd.execute();
+                // Валидация входных данных
+                if (username.empty()) {
+                    throw AuthException("Имя пользователя не может быть пустым.");
+                }
+                
+                if (password.empty()) {
+                    throw AuthException("Пароль не может быть пустым.");
+                }
+                
+                User* user = diary.getUserManager().findUser(username);
+                if (!user) {
+                    throw UserNotFoundException();
+                }
+                
+                if (!diary.getUserManager().checkPassword(username, password)) {
+                    throw InvalidPasswordException();
+                }
+                
+                diary.getUserManager().setCurrentUser(user);
+                
                 // Устанавливаем текущего пользователя в NutritionContainer
-                User* user = diary.getUserManager().getCurrentUser();
                 if (user) {
                     diary.getNutritionManager().setCurrentUser(user->getUsername());
                 }
@@ -92,9 +109,28 @@ User* NutritionSystem::login() {
             }
             
             try {
-                RegisterCommand cmd(diary.getUserManager(), username, password, 
-                                  weight, height, age, goal, activity);
-                cmd.execute();
+                // Валидация входных данных
+                if (username.empty()) {
+                    throw AuthException("Имя пользователя не может быть пустым.");
+                }
+                
+                if (password.empty()) {
+                    throw AuthException("Пароль не может быть пустым.");
+                }
+                
+                if (diary.getUserManager().usernameExists(username)) {
+                    throw UserExistsException();
+                }
+                
+                // Валидация физических параметров
+                if (weight <= 0 || height <= 0 || age <= 0) {
+                    throw AuthException("Вес, рост и возраст должны быть положительными числами.");
+                }
+                
+                User* newUser = new User(username, weight, height, age, goal, activity);
+                diary.getUserManager().addUser(newUser, password);
+                diary.getUserManager().setCurrentUser(diary.getUserManager().findUser(username));
+                
                 // Устанавливаем текущего пользователя в NutritionContainer
                 User* user = diary.getUserManager().getCurrentUser();
                 if (user) {

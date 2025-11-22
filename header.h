@@ -37,16 +37,9 @@
 #include "include/containers/nutrition_container.h"
 #include "include/containers/listNode.h"
 
-// Команды
-#include "include/commands/command.h"
-#include "include/commands/auth_commands.h"
-#include "include/commands/product_commands.h"
-#include "include/commands/diary_commands.h"
-
 // Консольный интерфейс
 #include "include/console/colors.h"
 #include "include/console/console_io.h"
-#include "include/console/menu.h"
 
 // Исключения
 #include "include/exceptions/auth_exception.h"
